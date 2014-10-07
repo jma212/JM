@@ -16,8 +16,9 @@ RActionCounter::RActionCounter(L, N, Act, ToTrack, Beta){
 
 RActionCounter::Transit(const FeasA){
    decl F, P, inda;
-   F=setbounds(v~v+1, 0 , N);
-   inda=sumr(FeasA[][Target.pos].==ToTrack);
-   P=(1-inda*exp(-Beta*v))~(inda*exp(-Beta*v));
-   return {F,P};  
+   if (v==N-1) return {matrix(v), ones(rows(FeasA),1)};
+   inda=(FeasA[][Target.pos].==ToTrack);
+   P=exp(-Beta*v)*inda;
+   return{v~(v+1), (1-P)~P};  
    }
+
