@@ -4,21 +4,25 @@
 # include "BiNormalRandomEffect.ox"
 struct CSproject:ExPostSmoothing{
        enum {cs, ncs, Msector};
+	   enum {omiga,alpha,beta,mu,sigma,delta,rho,tfp,share,elas,Nparams};
        enum {A0=22,
              A1=65,
 	         Ntypes=2};
        static const decl
-       /**log efficiency wage  **/			  omiga=<2.0;2.9>,
-       /**wage parameters**/                  alpha={<1.01; 0.8>,
-                                                     <0.73; 0.97>},
-       /**experience profile**/				  beta=<0.01;0.02>,						  
-       /**dynamic roy **/					  mu=<0;0>,
-                                              sigma=<3.0,-1;-1,10.0>,
-       /**discount rate**/					  delta=0.9,
-       /**ExPostSmoothing **/                 rho=1/4;
+	   		DGP =  {
+       /**log efficiency wage  			  omiga=**/  <2.0;2.9>,
+       /**wage parameters                  alpha=**/ {<1.01; 0.8>,
+                                                      <0.73; 0.97>},
+       /**experience profile				  beta=**/<0.01;0.02>,						  
+       /**dynamic roy 					  mu=**/ <0;0>,
+       /**                           sigma=**/ <3.0,-1;-1,10.0>,
+       /**discount rate					  delta=**/0.9,
+       /**ExPostSmoothing   rho=**/               1/4
+	   				};
                                      
 									  									 
       static decl
+	   /** estimated parameters **/           hat,
        /**choices of occupation**/            occupations,
        /**experience**/                       xper,
        /**random effect **/			          types,

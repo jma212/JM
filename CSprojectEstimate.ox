@@ -4,35 +4,20 @@
 /**find the market clear wage**/
 CSprojectHat::FirstStage(){
     decl i;
-	omigahat=new array[Msector];
-	omigahat[0]=new Positive("logwagecs", pars[omiga][0]);
-	omigahat[1]=new Positive("logwagencs", pars[omiga][1]);
-	alphahat=new array[4];
-	for (i=0;i<4;++i) alphahat[i]=new Free("ParaWage"+sprint(i), pars[alpha][i]);
-	betahat= new array[Msector];
-	betahat[0]=new Positive("bcs", pars[beta][0]);
-	betahat[1]=new Positive("bncs", pars[beta][1]);
-//	muhat=new array[Msector];
-//	muhat[0]=new Determined("mucs",pars[mu][0]);
-//	muhat[1]=new Determined("muncs", pars[mu][1]);
-	sigmahat=new array[3];	 // sigma should be code as a block of parameters that satisfied the positive definite 
-	sigmahat[0]=new Positive("vcs", pars[sigma][0]);
-	sigmahat[1]=new Positive("vncs", pars[sigma][1]);
-	sigmahat[2]=new Correlation("corr", pars[sigma][2]);
-	deltahat= new Determined("disc", pars[delta]);
-	rhohat=new Determined("rho", pars[rho]);
-	tfphat=new array[Msector];
-	tfphat[0]=new Positive("tfpcs", pars[tfp][0]);
-	tfphat[1]=new Positive("tfpncs", pars[tfp][1]);
-	sharehat=new array[Msector];
-	sharehat[0]=new Probability("sharecs",pars[share][0]);
-	sharehat[1]=new Probability("sharencs",pars[share][1]);
-	elashat=new array[Msector];
-	elashat[0]=new Free("elas", pars[elas][0]);
-	elashat[1]=new Free("elas", pars[elas][1]);
+	hat = new array[Nparams];
+	hat[omiga] = new StDeviations("logw", DGP[omiga]);
+	hat[alpha] = new Coefficients("ParaWage",DGP[alpha]);
+	hat[beta]  = new ParameterBlock("b",new Positive("bcs", DGP[beta][0]),new Positive("bncs", DGP[beta][1]));
+	hat[mu] = new FixedBlock("mu",DGP[mu])
+	hat[sigma] =new Coefficients("cholesky",choleski(DGP[sigma]));
+	hat[delta]= new Determined("disc", DGP[delta]);
+	hat[rho] =new Determined("rho", DGP[rho]);
+	hat[tfp] =new StDeviations("tfp",DGP[tfp]);
+	hat[share] =new Simplex("share",DGP[share]);
+	hat[elas] =new Coefficients("elas",pars[elas]);
 	decl obj, equimethod;
-	obj=new MarketClear("Equilibrium", omigahat, alphahat, betahat, sigmahat, deltahat, rhohat, tfphat, sharehat, elashat);
-	ToggleParams(alphahat, betahat, sigmahat, tfphat, sharehat, elashat);
+	obj=new MarketClear("Equilibrium", hat);
+	ToggleParams(hat[alpha], hat[beta], hat[sigma], hat[tfp], hat[share], hat[elas]);
 	equimethod=new NelderMead(obj);	   
 	equimethod.Volume=LOUD;
 	equimethod-> Iterate(0);

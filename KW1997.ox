@@ -2,22 +2,23 @@
 KW1997::Run(){
 	decl i, sigma, Ttotal=A1-A0, BF, KW;
 	decl data, newd, ps;
-	Initialize(Reachable, TRUE, 0);
+	Initialize(Reachable);		//CF don't need to send defaults anymore
 	SetClock(NormalAging, Ttotal);
+	SubSampleStates(ones(1,5)~constant(0.2,1,Ttotal-5));  //CF - new way of subsampling
 	Actions(accept= new ActionVariable("Accept", Msector));
 	sigma=vech(choleski(sd.*unvech(rho).*sd'));
 	ExogenousStates(offers= new MVNormal("eps", Msector, Noffers, zeros(Msector,1), sigma));
 	GroupVariables(types= new RandomEffect("Type", Ntypes));
 	xper= new array[Msector-1];
 	for (i=0;i<Msector-1;++i){
-		EndogenousStates(xper[i]=new ActionCounter("X"+sprint(i), Ttotal, accept, i, 0));
+		EndogenousStates(xper[i]=new ActionCounter("X"+sprint(i), Ttotal, accept,i));
 		}
 	SetDelta(0.7870);
 	CreateSpaces(LogitKernel, 1/40000.0);
 	Volume = LOUD;
 	//BF = new ValueIteration();
 	//BF ->Solve();
-	KW = new KeaneWolpin(ones(1,5)~constant(0.8,1,5),0);
+	KW = new KeaneWolpin();
 	KW->Solve();
 	//Vprint(TRUE);
 	ps=new FPanel(0,0,FALSE);
