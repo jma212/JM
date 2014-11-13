@@ -1,0 +1,164 @@
+--------------- Ox at 15:41:41 on 13-Nov-2014 ---------------
+
+Ox Console version 7.01 (Windows/U) (C) J.A. Doornik, 1994-2013
+This version may be used for academic research and teaching only
+
+ niqlow version 1.00 Copyright (C) 2011-2014 Christopher Ferrall.
+ Execution of niqlow implies acceptance of its free software License (niqlow/niqlow-license.txt).
+Update Time 
+      0.00000
+       1.0000
+      0.00000
+-------------------- DP Model Summary ------------------------
+Clock Class: 2 Description: Normal Finite Horizon Aging
+STATE VARIABLES
+              |eps   |eta |theta        -clock        |gamma
+              s11    s21   ExCS  ExNCS      t     t'  Heter      f
+       s.N      1      1     17     17     17      1      4      1
+
+
+Transition Categories (not counting fixed)
+                 NonRandom       Random   Coevolving
+     #Vars               0            0            4
+
+Size of Spaces
+                           N
+        Exogenous          1
+    SemiExogenous          1
+       Endogenous        289
+            Times         17
+    EV()Iterating        289
+    Ch.Prob.track       4913
+     Random Groups         4
+     Fixed Groups          1
+    TotalUntrimmed     19652
+
+ACTION VARIABLES (2 distinct actions)
+         Occup
+    i.N      2
+
+
+ Trimming 
+                           N
+    TotalReachable       969
+         Terminal          0
+
+ACTION SETS
+    alpha       A[0]   
+    (0)           X    
+    (1)           X    
+#States         969
+    Key: X = row vector is feasible. - = infeasible
+ FPanel Simulation time: 120
+Warning: Encode: SMM NvfuncTerms, length of return vfunc(), not initialized. Set to 1
+ FPanel Simulation time: 116.2
+ FPanel Simulation time: 117.8
+ FPanel Simulation time: 121.1
+ FPanel Simulation time: 91.3
+ FPanel Simulation time: 85
+ FPanel Simulation time: 79.9
+ FPanel Simulation time: 72.3
+ FPanel Simulation time: 66.8
+ FPanel Simulation time: 60
+ FPanel Simulation time: 57.9
+ FPanel Simulation time: 57.7
+ FPanel Simulation time: 58.6
+ FPanel Simulation time: 58.1
+ FPanel Simulation time: 57.9
+ FPanel Simulation time: 57.7
+ FPanel Simulation time: 57.5
+ FPanel Simulation time: 58.1
+ FPanel Simulation time: 57.3
+ FPanel Simulation time: 57.2
+ FPanel Simulation time: 57.6
+ FPanel Simulation time: 57.8
+ FPanel Simulation time: 57.4
+ FPanel Simulation time: 57.5
+ FPanel Simulation time: 57.4
+ FPanel Simulation time: 57.1
+ FPanel Simulation time: 56.7
+ FPanel Simulation time: 57.4
+ FPanel Simulation time: 58.1
+ FPanel Simulation time: 57.7
+ FPanel Simulation time: 56.5
+ FPanel Simulation time: 57.5
+ FPanel Simulation time: 57.5
+ FPanel Simulation time: 58
+ FPanel Simulation time: 57.6
+ FPanel Simulation time: 57.3
+ FPanel Simulation time: 57
+ FPanel Simulation time: 57.4
+ FPanel Simulation time: 57.8
+ FPanel Simulation time: 57.4
+ FPanel Simulation time: 56.5
+ FPanel Simulation time: 57.8
+ FPanel Simulation time: 58.7
+ FPanel Simulation time: 58.4
+ FPanel Simulation time: 58.7
+ FPanel Simulation time: 58.5
+ FPanel Simulation time: 57.9
+ FPanel Simulation time: 58.4
+ FPanel Simulation time: 58.4
+ FPanel Simulation time: 58.6
+ FPanel Simulation time: 59.4
+ FPanel Simulation time: 61.5
+ FPanel Simulation time: 68.3
+ FPanel Simulation time: 57.3
+ FPanel Simulation time: 59
+ FPanel Simulation time: 59.6
+ FPanel Simulation time: 57.4
+ FPanel Simulation time: 58.3
+ FPanel Simulation time: 59.3
+ FPanel Simulation time: 58.7
+ FPanel Simulation time: 58.9
+ FPanel Simulation time: 58.5
+ FPanel Simulation time: 57.9
+ FPanel Simulation time: 58.7
+ FPanel Simulation time: 58.5
+ FPanel Simulation time: 58.3
+ FPanel Simulation time: 58.4
+ FPanel Simulation time: 57.7
+ FPanel Simulation time: 59.1
+ FPanel Simulation time: 58.7
+ FPanel Simulation time: 58.3
+ FPanel Simulation time: 58.1
+ FPanel Simulation time: 59.4
+ FPanel Simulation time: 58
+ FPanel Simulation time: 63
+ FPanel Simulation time: 58.6
+ FPanel Simulation time: 58.6
+ FPanel Simulation time: 60
+ FPanel Simulation time: 59.7
+ FPanel Simulation time: 60.6
+ FPanel Simulation time: 58.4
+ FPanel Simulation time: 117.5
+ FPanel Simulation time: 112.2
+ FPanel Simulation time: 111.6
+ FPanel Simulation time: 107.2
+ FPanel Simulation time: 91.6
+ FPanel Simulation time: 96.1
+ FPanel Simulation time: 113.2
+ FPanel Simulation time: 113.3
+ FPanel Simulation time: 112.5
+ FPanel Simulation time: 112
+ FPanel Simulation time: 111.9
+ FPanel Simulation time: 112.4
+ FPanel Simulation time: 114.7
+ FPanel Simulation time: 113.2
+ FPanel Simulation time: 117.2
+ FPanel Simulation time: 118.5
+ FPanel Simulation time: 117.7
+ FPanel Simulation time: 113.5
+Runtime error: 'new class' out of memory
+Runtime error occurred in Simulate (147), call trace: 
+ (147): Simulate
+ (232): Simulate
+ (312): Simulate
+F:\niqlow-14-September-2014\examples\CSprojectEstimateVersion1.ox (88): SimulateMoments
+F:\niqlow-14-September-2014\examples\CSprojectEstimateVersion1.ox (170): vfunc
+ (345): vobj
+ (286): funclist
+ (341): Amoeba
+ (261): Iterate
+F:\niqlow-14-September-2014\examples\CSprojectEstimateVersion1.ox (19): FirstStage
+F:\niqlow-14-September-2014\examples\mainCSprojectEstimate11.ox (4): main
