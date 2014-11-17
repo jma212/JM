@@ -1,8 +1,8 @@
 #include <KW1997.h>
 KW1997::Run(){
-	decl i, sigma, Ttotal=A1-A0, BF, KW;
+	decl i, sigma, BF, KW;
 	decl data, newd, ps;
-	Initialize(Reachable, TRUE, 0);
+	Initialize(Reachable, FALSE, 0);
 	SetClock(NormalAging, Ttotal);
 	Actions(accept= new ActionVariable("Accept", Msector));
 	sigma=vech(choleski(sd.*unvech(rho).*sd'));
@@ -10,19 +10,22 @@ KW1997::Run(){
 	GroupVariables(types= new RandomEffect("Type", Ntypes));
 	xper= new array[Msector-1];
 	for (i=0;i<Msector-1;++i){
-		EndogenousStates(xper[i]=new ActionCounter("X"+sprint(i), Ttotal, accept, i, 0));
+		EndogenousStates(xper[i]=new ActionCounter("X"+sprint(i), MxExper, accept, i, 0));
 		}
 	SetDelta(0.7870);
+	decl stages = 10~max(0,Ttotal-10-3)~3;
+	SubSampleStates(ones(1,stages[0])~constant(0.15,1,stages[1])~constant(0.1,1,stages[2]));
+//	onlyDryRun();
 	CreateSpaces(LogitKernel, 1/40000.0);
-	Volume = LOUD;
+	//Volume = LOUD;
 	//BF = new ValueIteration();
 	//BF ->Solve();
-	KW = new KeaneWolpin(ones(1,5)~constant(0.8,1,5),0);
-	KW->Solve();
+	KW = new KeaneWolpin();
+	// KW->Solve();
 	//Vprint(TRUE);
-	ps=new FPanel(0,0,FALSE);
-	ps->Simulate(10, 3, ones(14,1), TRUE);
-	//newd=ps->Print(0);
+	ps=new Panel(0,KW,TRUE);
+	ps->Simulate(50,Ttotal);
+	newd=ps->Print(1);    // print to screen (also available in ps.flat)
 	//DPDebug::outV(TRUE,0);
 	}
 
