@@ -5,12 +5,14 @@
 struct KW1997:ExPostSmoothing{
 	decl InSubSample; // the public data used in the Keane and Wolpin approximation method
 	enum {white, blue, military, school, home, Msector};
-	enum {A1=26,
+	enum {A1=36,
       A0=16,
+	  MxExper = 10,
+	  Ttotal=A1-A0, 
 	  HSGrad=12,
 	  CGrad=16,
 	  Noffers=5,
-	  Ntypes=4,
+	  Ntypes=1,
 	  School0=10};
 	static const decl
 	/**  wages   **/       alpha={<0.0938;0.1170;0.0748;0.0077;-0.0461>,
