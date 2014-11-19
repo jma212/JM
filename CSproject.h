@@ -1,7 +1,9 @@
 //# include "NAging.ox"
-# include "Clock.h"
+#import "niqlow"
 # include "RActionCounter.ox"
 # include "BiNormalRandomEffect.ox"
+#include "Wage.ox"
+
 struct CSproject:ExPostSmoothing{
        enum {cs, ncs, Msector};
        enum {A0=22,

@@ -56,7 +56,7 @@ CSprojectHat::Run(){
 //	xper[1]=new RActionCounter("ExNcs", Ttotal-1, occupations, 1, betahat[1]);
     xper[1]=new ActionCounter("ExNCS", Ttotal-1, occupations, 1, 0);
 	EndogenousStates(xper[0], xper[1]);
-	tempcov=CV(sigmahat[2])*sqrt(CV(sigmahat[0])*CV(sigmahat[1]));	
+	tempcov=CV(sigmahat[2])*sqrt(CV(sigmahat[0])*CV(sigmahat[1]));
 	tempsigma=(CV(sigmahat[0])~tempcov)|(tempcov~CV(sigmahat[1]));
 	types=new BiNormalRandomEffect("Heterogeniety", Ntypes, pars[mu], tempsigma);
 	nodes=<>;
@@ -66,7 +66,7 @@ CSprojectHat::Run(){
 		}
 	nodes=choleski(tempsigma)*nodes';
 	GroupVariables(types);
-	AuxiWage=new AuxiliaryVariable("Wage");
+	AuxiWage=new Wage();
 	AuxiliaryOutcomes(AuxiWage);
 	SetDelta(deltahat);
 	CreateSpaces(LogitKernel,rhohat);
@@ -112,11 +112,11 @@ CSprojectHat::Auxi(){
    return R[A[Aind]];
    }
 
-AuxiliaryVariable::Realize(q,y){
-   decl v1=q->Utility()[q.ialpha][];
-   decl v2=q->Auxi()[q.ialpha][];
-   v=v1~v2;
-   }
+//AuxiliaryVariable::Realize(q,y){
+//   decl v1=q->Utility()[q.ialpha][];
+//   decl v2=q->Auxi()[q.ialpha][];
+//   v=v1~v2;
+//   }
 
 CSprojectHat::ldemand(const vP, const adfunc, const avScore, const amHess){
    decl dif1, dif2;

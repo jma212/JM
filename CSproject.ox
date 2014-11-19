@@ -20,7 +20,7 @@ CSproject::Run(){
        }
    nodes=mu+choleski(sigma)*nodes';
    GroupVariables(types);
-   AuxiWage= new AuxiliaryVariable("Wage");
+   AuxiWage= new Wage();
    AuxiliaryOutcomes(AuxiWage);
    SetDelta(delta);
    CreateSpaces(LogitKernel,rho);
@@ -56,13 +56,6 @@ CSproject::Auxi(){
    decl rr=(x*alpha[0]|x*alpha[1])+this.nodes[][types.v];
    R=exp(rr);
    return R[A[Aind]];
-   }
-
-
-AuxiliaryVariable::Realize(q,y){
-   decl v1=q->Utility()[q.ialpha][];
-   decl v2=q->Auxi()[q.ialpha][];
-   v=v1~v2;
    }
 
 
